@@ -927,7 +927,7 @@ input:checked + label span:last-child {
 
 /* ========= Start Experience ======= */
 
-.experience-skill {
+.experience-education {
   margin-top: 40px;
 }
 
@@ -2000,7 +2000,7 @@ textarea.form-control::-webkit-input-placeholder,
     display: flex;
     flex-wrap: wrap;
   }
-  .experience-skill {
+  .experience-education {
     margin-top: 10px;
   }
   .experience-chart,

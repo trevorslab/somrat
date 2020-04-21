@@ -208,22 +208,29 @@
     {{ end }}
     {{ end }}
 
-    <div class="row experience-skill">
+    <div class="row experience-education">
       {{ if $data.homepage.experience.enable }}
       {{ with $data.homepage.experience }}
       <div class="col-lg-6 col-sm-6 col-11 experience wow fadeInUp" data-wow-duration="1.5s">
         <h3>{{ .title }}</h3>
         <ul class="experience-chart">
-          {{ range .experience_list }}
-          <li>
-            <div class="single-experience">
-              <h4>{{ .name | markdownify }}</h4>
-              {{ with .company }} <span>{{ . | markdownify }}</span> {{ end }}
-              {{ with .duration }} <span>{{ . | markdownify }}</span> {{ end }}
-              {{ with .content }} <p>{{ . | markdownify}}</p> {{ end }}
-            </div>
-          </li>
-          {{ end }}
+          <ul class="experience-chart">
+            {{ range $listitem := .experience_list }}
+            <li>
+              <div class="single-experience">
+                <h4>{{ $listitem.name | markdownify }}</h4>
+                {{ with $listitem.url }}
+                  <a href="{{ . }}" target="_blank"><span>{{ $listitem.company | markdownify }}</span></a>
+                {{ else }}
+                  <span>{{ $listitem.company | markdownify }}</span>
+                {{ end }}
+                <br>
+                {{ with .duration }} <span>{{ . | markdownify }}</span> {{ end }}
+                {{ with .state }} ● <span>{{ . | markdownify }}</span> {{ end }}
+                {{ with .content }} <p>{{ . | markdownify}}</p> {{ end }}
+              </div>
+            </li>
+            {{ end }}
         </ul>
       </div>
       {{ end }}
