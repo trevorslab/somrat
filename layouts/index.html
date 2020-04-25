@@ -75,7 +75,7 @@
             <div class="full-nav-icon-holder">
               <ul class="full-nav-icons list-inline">
                 {{ range .Site.Params.social }}
-                <li><a href="{{ .link | safeURL }}"><i class="fa {{ .icon }}"></i></a></li>
+                <li><a href="{{ .link | safeURL }}" target="_blank"><i class="fa {{ .icon }}"></i></a></li>
                 {{ end }}
               </ul>
             </div>
@@ -98,6 +98,9 @@
     <!-- desktop-menu -->
     <div class="menu-container">
       <ul class="desktop-menu list-inline mb-0" id="desktop-menu">
+        <li class="menu-item desktop-menu-logo 1"><img class="img-fluid"
+          src="{{ .Site.Params.logo_dark | absURL }}" alt="{{ .Site.Title }}">
+        </li>
         {{ range .Site.Menus.main }}
         <li class="menu-item hvr-underline-from-left 1"><a href="{{ .URL }}">{{ .Name }}</a></li>
         {{ end }}
@@ -167,7 +170,7 @@
             {{ end }}
             <ul class="mobile-menu-icons list-inline">
               {{ range .Site.Params.social }}
-              <li><a href="{{ .link | safeURL }}"><i class="fa {{ .icon }}"></i></a></li>
+              <li><a href="{{ .link | safeURL }}" target="_blank"><i class="fa {{ .icon }}"></i></a></li>
               {{ end }}
             </ul>
           </nav>
@@ -208,29 +211,30 @@
     {{ end }}
     {{ end }}
 
-    <div class="row experience-education">
+    <div class="row experience-skill">
       {{ if $data.homepage.experience.enable }}
       {{ with $data.homepage.experience }}
       <div class="col-lg-6 col-sm-6 col-11 experience wow fadeInUp" data-wow-duration="1.5s">
         <h3>{{ .title }}</h3>
         <ul class="experience-chart">
-          <ul class="experience-chart">
-            {{ range $listitem := .experience_list }}
-            <li>
-              <div class="single-experience">
-                <h4>{{ $listitem.name | markdownify }}</h4>
-                {{ with $listitem.url }}
-                  <a href="{{ . }}" target="_blank"><span>{{ $listitem.company | markdownify }}</span></a>
-                {{ else }}
-                  <span>{{ $listitem.company | markdownify }}</span>
-                {{ end }}
-                <br>
-                {{ with .duration }} <span>{{ . | markdownify }}</span> {{ end }}
-                {{ with .state }} ● <span>{{ . | markdownify }}</span> {{ end }}
-                {{ with .content }} <p>{{ . | markdownify}}</p> {{ end }}
-              </div>
-            </li>
-            {{ end }}
+          {{ range $listitem := .experience_list }}
+          <li>
+            <div class="single-experience">
+              <h4>{{ $listitem.name | markdownify }}</h4>
+              {{ with $listitem.url }}
+                <a href="{{ . }}" target="_blank"><span>{{ $listitem.company | markdownify }}</span></a>
+              {{ else }}
+                <span>{{ $listitem.company | markdownify }}</span>
+              {{ end }}
+                
+              
+              <br>
+              {{ with .duration }} <span>{{ . | markdownify }}</span> {{ end }}
+              {{ with .state }} ● <span>{{ . | markdownify }}</span> {{ end }}
+              {{ with .content }} <p>{{ . | markdownify}}</p> {{ end }}
+            </div>
+          </li>
+          {{ end }}
         </ul>
       </div>
       {{ end }}
@@ -449,7 +453,7 @@
           <a href="#home"><i class="fa fa-chevron-up"></i></a>
         </div>
         <div class="credit">
-          <i class="fa fa-copyright"></i> {{ .Site.Params.copyright | markdownify }}
+          <!--<i class="fa fa-copyright"></i>--> {{ .Site.Params.copyright | markdownify }}
         </div>
       </div>
     </div>
